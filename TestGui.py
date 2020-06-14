@@ -20,6 +20,32 @@ class MyFrame(ttk.Frame):
         self.controller.root.columnconfigure(0, weight=1)
         self.controller.root.rowconfigure(0, weight=1)
 
+        # Menubar setup
+        self.menubar = Menu(self.controller.root)
+
+        # Create dropdown menus
+        self.filemenu = Menu(self.menubar, tearoff=0)
+        self.filemenu.add_command(label="Open...") # no command yet
+        self.filemenu.add_command(label="Save") # no command yet
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label="Exit", command=self.quit)
+        self.menubar.add_cascade(label="File", menu=self.filemenu)
+
+        # Create edit menu
+        self.editmenu = Menu(self.menubar, tearoff=0)
+        self.editmenu.add_command(label="Cut") # no command yet
+        self.editmenu.add_command(label="Copy") # no command yet
+        self.editmenu.add_command(label="Paste") # no command yet
+        self.menubar.add_cascade(label="Edit", menu=self.editmenu)
+
+        # Create help menu
+        self.helpmenu = Menu(self.menubar, tearoff=0)
+        self.helpmenu.add_command(label="About") # no command yet
+        self.menubar.add_cascade(label="Help", menu=self.helpmenu)
+
+        # show menubar
+        self.controller.root.config(menu=self.menubar)
+
         #Output Label
         self.temp = StringVar()
         self.temp.set("???")
